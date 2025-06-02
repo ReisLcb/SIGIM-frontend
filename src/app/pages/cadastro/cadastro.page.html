@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Cadastro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="clienteForm">
+    <ion-list>
+      
+      <ion-item>
+        <ion-input label="Nome completo" label-placement="floating" formControlName="nome"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="CPF" label-placement="floating" fill="solid" formControlName="cpf"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data de Nascimento</ion-label>
+        <ion-datetime-button datetime="datetime" />
+      </ion-item>
+      
+      <ion-item>
+        <ion-select formControlName="estado_civil" label="Estado civil">
+          <ion-select-option value="Solteiro">Solteiro(a)</ion-select-option>
+          <ion-select-option value="Casado">Casado(a)</ion-select-option>
+          <ion-select-option value="Divorciado">Divorciado(a)</ion-select-option>
+          <ion-select-option value="Viúvo">Viúvo(a)</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Telefone" type="number" label-placement="floating" fill="solid" placeholder="(XX) XXXXX-XXXX" formControlName="telefone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="E-mail" label-placement="floating" fill="solid" placeholder="Informe seu e-mail" formControlName="email"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-input label="Senha" type="password" label-placement="floating" fill="solid" placeholder="Crie sua senha" formControlName="senha">
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime
+          id="datetime"
+          presentation="date"
+          formControlName="data_nascimento"
+          [formatOptions]="{
+        date: {
+          year: 'numeric',
+          month: 'long',
+          day: '2-digit',
+        },
+
+      }"
+        ></ion-datetime>
+      </ng-template>
+    </ion-modal>
+
+    <ion-button (click)="cadastrar()" [disabled]="!clienteForm.valid">
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-button>
+  </form>
+</ion-content>
