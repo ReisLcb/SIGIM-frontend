@@ -12,6 +12,11 @@ export class ClienteService {
 
   constructor() { }
 
+
+   getAll(){
+    return this.http.get<Cliente[]>(`${this.api}`)
+  }
+
    login(cliente:Partial<Cliente>){
     return this.http.get<Cliente>(`${this.api}/login/${cliente.email}/${cliente.senha}`)
   }
