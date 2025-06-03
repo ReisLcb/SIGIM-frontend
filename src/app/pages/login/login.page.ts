@@ -7,14 +7,13 @@ import { ClienteService } from 'src/app/servicos/cliente.service';
 
 
 @Component({
-  selector: 'app-cadastro',
-  templateUrl: './cadastro.page.html',
-  styleUrls: ['./cadastro.page.scss'],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonModal, IonDatetimeButton, IonIcon, IonInputPasswordToggle, IonDatetime, IonList, IonTitle, IonToolbar, IonHeader, IonContent, CommonModule, FormsModule,  ReactiveFormsModule, IonList, IonItem, IonLabel, IonButton, IonIcon, IonInput, IonSelectOption, IonSelect]
+imports: [IonModal, IonDatetimeButton, IonIcon, IonInputPasswordToggle, IonDatetime, IonList, IonTitle, IonToolbar, IonHeader, IonContent, CommonModule, FormsModule,  ReactiveFormsModule, IonList, IonItem, IonLabel, IonButton, IonIcon, IonInput, IonSelectOption, IonSelect]
 })
-
-export class CadastroPage {
+export class LoginPage {
 
   private clienteService = inject(ClienteService);
   private router = inject(Router)
@@ -33,29 +32,19 @@ export class CadastroPage {
 
   private formBuilder = inject(NonNullableFormBuilder);
   protected clienteForm = this.formBuilder.group({
-    nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-    cpf: ['', [Validators.required, Validators.minLength(11)]],
-    data_nascimento: [new Date().toISOString()],
-    estado_civil: ['', [Validators.required]],
-    telefone: ['', [Validators.required, Validators.minLength(15)]],
     email: ['', [Validators.required, Validators.email]],
     senha: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-
-  protected cadastrar(){
-    this.clienteService.cadastrar(this.clienteForm.value).subscribe({
+  protected login(){
+    this.clienteService.login(this.clienteForm.value).subscribe({
       next: () => {
-        this.exibirMensagem(`Muito prazer em te conhecer, ${this.clienteForm.value.nome?.split(" ")[0]}`)
-        this.router.navigate(['/login'])
+        this.exibirMensagem("Login efetuado com sucesso")
+        this.router.navigate(['/cliente-list'])
       },
 
-      error: (erro) => this.exibirMensagem(erro.error)
+      error: (erro) => this.exibirMensagem(erro.error.error)
     })
-  }
-
-  protected excluir(id:number){
-
   }
 
 }
