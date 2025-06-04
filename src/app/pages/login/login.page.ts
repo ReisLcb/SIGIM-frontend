@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {  ReactiveFormsModule, FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { IonContent, IonItem, IonInputPasswordToggle, IonLabel, IonButton, IonIcon, IonDatetime, IonInput, IonSelectOption, IonSelect, IonHeader, ToastController, IonToolbar, IonTitle, IonList, IonDatetimeButton, IonModal } from '@ionic/angular/standalone';
+import { IonContent, IonItem, IonInputPasswordToggle, IonButton, IonIcon, IonInput, ToastController, IonList } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/servicos/cliente.service';
 
@@ -11,7 +11,7 @@ import { ClienteService } from 'src/app/servicos/cliente.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-imports: [IonIcon, IonInputPasswordToggle, IonList, CommonModule, FormsModule,  ReactiveFormsModule, IonList, IonItem, IonButton, IonIcon, IonInput]
+imports: [IonIcon, IonInputPasswordToggle, IonList, CommonModule, FormsModule, IonContent, ReactiveFormsModule, IonList, IonItem, IonButton, IonIcon, IonInput]
 })
 export class LoginPage {
 

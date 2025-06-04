@@ -1,18 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, ToastController, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, ToastController, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/servicos/cliente.service';
 import { Cliente } from 'src/app/modelos/cliente';
-import { tratar_cpf, tratar_telefone } from 'tratardados/src/controller'
+import { formatarData, tratarCpf, tratarTelefone } from '../../modelos/funcoes'
 
 @Component({
   selector: 'app-cliente-list',
   templateUrl: './cliente-list.page.html',
   styleUrls: ['./cliente-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar]
 })
 export class ClienteListPage {
 
@@ -27,9 +27,9 @@ export class ClienteListPage {
 
   async formatarDados(){
     this.clientes.forEach((cliente) => {
-      cliente.cpf = tratar_cpf(cliente.cpf.toString())
-      cliente.telefone = tratar_telefone(cliente.telefone.toString())
-      cliente.data_nascimento = cliente.data_nascimento.split("T")[0]
+      cliente.cpf = tratarCpf(cliente.cpf.toString())
+      cliente.telefone = tratarTelefone(cliente.telefone.toString())
+      cliente.data_nascimento = formatarData(cliente.data_nascimento.toString())
     })
   }
 
@@ -65,7 +65,6 @@ export class ClienteListPage {
     this.clienteService.getAll().subscribe({
       next: (users) => {
         this.clientes = users
-
         this.formatarDados()
       },
 

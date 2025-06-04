@@ -35,13 +35,12 @@ export class CadastroPage {
   protected clienteForm = this.formBuilder.group({
     nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     cpf: ['', [Validators.required, Validators.minLength(11)]],
-    data_nascimento: [new Date().toISOString()],
+    data_nascimento: [new Date().toISOString(), [Validators.required]],
     estado_civil: ['', [Validators.required]],
-    telefone: ['', [Validators.required, Validators.minLength(15)]],
+    telefone: ['', [Validators.required, Validators.minLength(11)]],
     email: ['', [Validators.required, Validators.email]],
     senha: ['', [Validators.required, Validators.minLength(6)]],
   });
-
 
   protected cadastrar(){
     this.clienteService.cadastrar(this.clienteForm.value).subscribe({
@@ -53,9 +52,4 @@ export class CadastroPage {
       error: (erro) => this.exibirMensagem(erro.error)
     })
   }
-
-  protected excluir(id:number){
-
-  }
-
 }
