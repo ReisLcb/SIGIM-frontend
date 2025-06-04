@@ -11,7 +11,7 @@ import { ClienteService } from 'src/app/servicos/cliente.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-imports: [IonModal, IonDatetimeButton, IonIcon, IonInputPasswordToggle, IonDatetime, IonList, IonTitle, IonToolbar, IonHeader, IonContent, CommonModule, FormsModule,  ReactiveFormsModule, IonList, IonItem, IonLabel, IonButton, IonIcon, IonInput, IonSelectOption, IonSelect]
+imports: [IonIcon, IonInputPasswordToggle, IonList, CommonModule, FormsModule,  ReactiveFormsModule, IonList, IonItem, IonButton, IonIcon, IonInput]
 })
 export class LoginPage {
 

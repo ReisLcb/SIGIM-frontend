@@ -4,7 +4,11 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true">
+  <ion-searchbar></ion-searchbar>
+  
 @for(cliente of clientes; track cliente.id){
   <ion-card>
     <ion-card-header>
