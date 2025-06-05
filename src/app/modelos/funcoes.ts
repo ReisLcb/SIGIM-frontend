@@ -1,12 +1,13 @@
 export function tratarCpf(cpf: string) {
   let cpf_tratado = "";
-
+  
   for (let i = 0; i < cpf.length; i++) {
     cpf_tratado += cpf[i];
-
+    
     if (i == 2 || i == 5) cpf_tratado += ".";
     if (i == 8) cpf_tratado += "-";
   }
+  console.log(cpf_tratado.replace('-/.', ''))
 
   return cpf_tratado;
 }

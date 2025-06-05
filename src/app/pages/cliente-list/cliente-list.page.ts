@@ -25,7 +25,7 @@ export class ClienteListPage {
     this.obterTodos()
   }
 
-  async formatarDados(){
+  async formatarDados() {
     this.clientes.forEach((cliente) => {
       cliente.cpf = tratarCpf(cliente.cpf.toString())
       cliente.telefone = tratarTelefone(cliente.telefone.toString())
@@ -55,9 +55,12 @@ export class ClienteListPage {
           this.formatarDados()
         },
         error: (erro) => {
-          console.log(erro.error);
+          console.log(erro.error.error);
+          this.clientes = []
         },
       });
+    } else {
+      this.obterTodos()
     }
   }
 

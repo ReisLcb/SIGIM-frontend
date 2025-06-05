@@ -49,7 +49,7 @@ export class CadastroPage {
         this.router.navigate(['/login'])
       },
 
-      error: (erro) => this.exibirMensagem(erro.error)
+      error: (erro) => this.exibirMensagem(erro.error.error)
     })
   }
 }
