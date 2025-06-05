@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, ToastController, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, ToastController, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar, IonSelect, IonSelectOption} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/servicos/cliente.service';
 import { Cliente } from 'src/app/modelos/cliente';
@@ -12,7 +12,7 @@ import { formatarData, tratarCpf, tratarTelefone } from '../../modelos/funcoes'
   templateUrl: './cliente-list.page.html',
   styleUrls: ['./cliente-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonSelect, IonSelectOption, FormsModule, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar, IonSelect, IonSelectOption]
 })
 export class ClienteListPage {
 

@@ -41,6 +41,8 @@ export class LoginPage {
       next: () => {
         this.exibirMensagem("Login efetuado com sucesso")
         this.router.navigate(['/cliente-list'])
+        console.log(222);
+        
       },
 
       error: (erro) => this.exibirMensagem(erro.error.error)

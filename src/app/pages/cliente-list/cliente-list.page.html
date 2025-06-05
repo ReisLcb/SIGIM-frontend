@@ -4,19 +4,16 @@
   </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content [fullscreen]="true">
-  <ion-searchbar   [debounce]="1000"
-  (ionInput)="pesquisarPeloNome($event)" aria-placeholder="Pesquisa"></ion-searchbar>
+  <ion-searchbar   
+  [debounce]="1000"
+  (ionInput)="pesquisarPeloNome($event)" ></ion-searchbar>
 
-        <ion-select formControlName="estado_civil" label="Estado civil">
-          <ion-select-option value="Solteiro">Solteiro(a)</ion-select-option>
-          <ion-select-option value="Casado">Casado(a)</ion-select-option>
-          <ion-select-option value="Divorciado">Divorciado(a)</ion-select-option>
-          <ion-select-option value="Viúvo">Viúvo(a)</ion-select-option>
-        </ion-select>
-    
+  <ion-select value="nome">
+    <ion-select-option label="Filtrar por:" value="nome">Nome</ion-select-option>
+    <ion-select-option value="id">ID</ion-select-option>
+  </ion-select>
+
 @for(cliente of clientes; track cliente.id){
   <ion-card>
     <ion-card-header>

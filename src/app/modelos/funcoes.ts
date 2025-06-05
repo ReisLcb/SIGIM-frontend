@@ -1,4 +1,5 @@
 export function tratarCpf(cpf: string) {
+  cpf.replace(/\.|\-/g, '') // Remove todos os caracteres não numéricos
   let cpf_tratado = "";
   
   for (let i = 0; i < cpf.length; i++) {
@@ -7,7 +8,6 @@ export function tratarCpf(cpf: string) {
     if (i == 2 || i == 5) cpf_tratado += ".";
     if (i == 8) cpf_tratado += "-";
   }
-  console.log(cpf_tratado.replace('-/.', ''))
 
   return cpf_tratado;
 }

@@ -46,7 +46,7 @@ export class CadastroPage {
     this.clienteService.cadastrar(this.clienteForm.value).subscribe({
       next: () => {
         this.exibirMensagem(`Muito prazer em te conhecer, ${this.clienteForm.value.nome?.split(" ")[0]}`)
-        this.router.navigate(['/login'])
+        this.router.navigate(['/home'])
       },
 
       error: (erro) => this.exibirMensagem(erro.error.error)
