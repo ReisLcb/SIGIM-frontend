@@ -1,5 +1,5 @@
 export interface Cliente {
-    readonly id: number
+    id: number
     nome: string
     cpf: string
     data_nascimento: string

@@ -1,18 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, ToastController, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar, IonSelect, IonSelectOption} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, ToastController, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar, IonSelect, IonSelectOption, IonIcon, IonButtons} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/servicos/cliente.service';
 import { Cliente } from 'src/app/modelos/cliente';
-import { formatarData, tratarCpf, tratarTelefone } from '../../modelos/funcoes'
+
 
 @Component({
   selector: 'app-cliente-list',
   templateUrl: './cliente-list.page.html',
   styleUrls: ['./cliente-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar, IonSelect, IonSelectOption]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton,CommonModule, FormsModule, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonSearchbar, IonSelect, IonSelectOption, IonIcon]
 })
 export class ClienteListPage {
 
@@ -23,14 +23,7 @@ export class ClienteListPage {
 
   constructor(private toastController: ToastController) {
     this.obterTodos()
-  }
-
-  async formatarDados(){
-    this.clientes.forEach((cliente) => {
-      cliente.cpf = tratarCpf(cliente.cpf.toString())
-      cliente.telefone = tratarTelefone(cliente.telefone.toString())
-      cliente.data_nascimento = formatarData(cliente.data_nascimento.toString())
-    })
+ 
   }
 
   async exibirMensagem(mensagem: string) {
@@ -52,7 +45,26 @@ export class ClienteListPage {
       this.clienteService.getByName(searchBar.value).subscribe({
         next: (clientes) => {
           this.clientes = clientes;
-          this.formatarDados()
+        },
+        error: (erro) => {
+          console.log(erro.error.error);
+          this.clientes = []
+        },
+      });
+    } else this.obterTodos()
+   
+  }
+
+   protected pesquisarPeloId(evento: Event) {
+    const input = evento.target as HTMLIonInputElement;
+
+    console.log(input.value);
+
+    if (input.value) {
+      this.clienteService.getById(Number(input.value)).subscribe({
+        next: (cliente) => {
+          this.clientes = [];
+          this.clientes.push(cliente)
         },
         error: (erro) => {
           console.log(erro.error.error);
@@ -67,16 +79,19 @@ export class ClienteListPage {
     this.clienteService.getAll().subscribe({
       next: (users) => {
         this.clientes = users
-        this.formatarDados()
       },
 
       error: (erro) => this.exibirMensagem(erro.error.error)
     })
   }
 
-  protected alterar(id: number) {
+  protected alterar(index: number) {
+    const clienteSelecionado = this.clientes[index]
 
-  }
+    this.router.navigate(
+      ['/cadastro'], 
+      { state: clienteSelecionado }
+  )}
 
   protected excluir(id: number) {
     this.clienteService.delete(id).subscribe({
@@ -87,6 +102,9 @@ export class ClienteListPage {
 
       error: (erro) => this.exibirMensagem(erro.error.error)
     })
+  }
+    protected cadastrar() {
+    this.router.navigate(['/aluno-create'])
   }
 
 }

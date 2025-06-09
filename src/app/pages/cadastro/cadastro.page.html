@@ -1,15 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Cadastro
+      <h1>SIGIM</h1>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="clienteForm">
+ <ion-card>
+  <ion-card-header>
+    <ion-card-title color="warning">Crie sua conta</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+     <form [formGroup]="clienteForm">
     <ion-list>
-      
+
       <ion-item>
         <ion-input label="Nome completo" label-placement="floating" formControlName="nome"></ion-input>
       </ion-item>
@@ -68,8 +74,10 @@
       </ng-template>
     </ion-modal>
 
-    <ion-button (click)="cadastrar()" [disabled]="!clienteForm.valid">
-      <ion-icon name="checkmark-outline"></ion-icon>
+    <ion-button (click)="cadastrar()" [disabled]="!clienteForm.valid" color="warning">
+      <ion-icon name="checkmark-outline" ></ion-icon>
     </ion-button>
   </form>
+  </ion-card-content>
+</ion-card>
 </ion-content>

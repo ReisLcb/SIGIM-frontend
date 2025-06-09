@@ -37,7 +37,7 @@ export class ClienteService {
     return this.http.delete(`${this.api}/delete/${id}`)
   }
 
-   update(cliente:Partial<Cliente>, id:number){
+   alterar(cliente:Partial<Cliente>, id:number){
     return this.http.put<Cliente>(`${this.api}/${id}`, cliente)
   }
 }
