@@ -47,8 +47,6 @@ export class CadastroPage {
 
       delete clienteSemId.id;
 
-      console.log(this.id, cliente, clienteSemId);
-
       this.clienteForm.setValue(cliente);
       this.clienteForm.controls.data_nascimento.setValue(
         new Date(Number(cliente.data_nascimento)).toISOString()
@@ -73,7 +71,6 @@ export class CadastroPage {
         this.exibirMensagem(`Muito prazer em te conhecer, ${this.clienteForm.value.nome?.split(" ")[0]}`)
         this.router.navigate(['/cliente-list'])
       },
-
       error: (erro) => this.exibirMensagem(erro.error.error)
     })
     }else{
